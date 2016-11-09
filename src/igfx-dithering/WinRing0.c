@@ -1,4 +1,5 @@
 ﻿#include "WinRing0.h"
+#include "platform.h"
 
 FindPciDeviceByClass_t FindPciDeviceByClass = NULL;
 ReadPciConfigDwordEx_t ReadPciConfigDwordEx = NULL;
@@ -23,7 +24,7 @@ BOOL WinRing0Initialize(void)
         return TRUE;
     do
     {
-#if defined(_M_X64) || defined(__amd64__)
+#ifdef PLATFORM_X64
         hWinRing0 = LoadLibrary("WinRing0x64.dll");
 #else
         hWinRing0 = LoadLibrary("WinRing0.dll");

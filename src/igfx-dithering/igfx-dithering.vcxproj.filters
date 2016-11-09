@@ -4,6 +4,7 @@
     <ClInclude Include="config.h" />
     <ClInclude Include="WinRing0.h" />
     <ClInclude Include="InpOut.h" />
+    <ClInclude Include="platform.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinRing0.c" />

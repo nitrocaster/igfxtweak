@@ -1,4 +1,5 @@
 ﻿#include "InpOut.h"
+#include "platform.h"
 
 IsInpOutDriverOpen_t IsInpOutDriverOpen = NULL;
 MapPhysToLin_t MapPhysToLin = NULL;
@@ -23,7 +24,7 @@ BOOL InpOutInitialize(void)
         return TRUE;
     do
     {
-#if defined(_M_X64) || defined(__amd64__)
+#ifdef PLATFORM_X64
         hInpOut = LoadLibrary("inpoutx64.dll");
 #else
         hInpOut = LoadLibrary("inpout32.dll");

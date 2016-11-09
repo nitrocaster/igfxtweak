@@ -132,6 +132,7 @@
   <ItemGroup>
     <ClInclude Include="config.h" />
     <ClInclude Include="InpOut.h" />
+    <ClInclude Include="platform.h" />
     <ClInclude Include="WinRing0.h" />
   </ItemGroup>
   <ItemGroup>
