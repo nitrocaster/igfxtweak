@@ -5,13 +5,11 @@
     <ClInclude Include="WinRing0.h" />
     <ClInclude Include="InpOut.h" />
     <ClInclude Include="platform.h" />
-    <ClInclude Include="igfx_registers.h" />
     <ClInclude Include="igfx_device.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinRing0.c" />
     <ClCompile Include="InpOut.c" />
-    <ClCompile Include="igfx_registers.c" />
     <ClCompile Include="igfx_device.c" />
   </ItemGroup>
 </Project>
