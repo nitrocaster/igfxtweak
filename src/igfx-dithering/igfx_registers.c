@@ -10,9 +10,7 @@ static uint8_t *reg_memmap(uint8_t *address, uint32_t size)
 {
     uint8_t *lin_addr;
     if (address==mapped_phys_addr && size==mapped_size)
-    {
         lin_addr = mapped_lin_addr;
-    }
     else
     {
         if (mapped_mem_handle)
