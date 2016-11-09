@@ -5,4 +5,8 @@
     <ClInclude Include="WinRing0.h" />
     <ClInclude Include="InpOut.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="WinRing0.c" />
+    <ClCompile Include="InpOut.c" />
+  </ItemGroup>
 </Project>

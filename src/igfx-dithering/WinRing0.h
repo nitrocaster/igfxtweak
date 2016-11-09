@@ -23,3 +23,10 @@ typedef BOOL // TRUE: success, FALSE: failure
         DWORD regAddress, // Configuration Address 0-whatever
         PWORD value // Read Value
     );
+
+extern FindPciDeviceByClass_t FindPciDeviceByClass;
+extern ReadPciConfigDwordEx_t ReadPciConfigDwordEx;
+extern ReadPciConfigWordEx_t ReadPciConfigWordEx;
+
+int WinRing0Initialize(void);
+int WinRing0Deinitialize(void);

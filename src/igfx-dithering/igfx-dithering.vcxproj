@@ -134,6 +134,10 @@
     <ClInclude Include="InpOut.h" />
     <ClInclude Include="WinRing0.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="InpOut.c" />
+    <ClCompile Include="WinRing0.c" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

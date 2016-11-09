@@ -17,3 +17,10 @@ typedef BOOL
         HANDLE PhysicalMemoryHandle,
         PBYTE pbLinAddr
     );
+
+extern IsInpOutDriverOpen_t IsInpOutDriverOpen;
+extern MapPhysToLin_t MapPhysToLin;
+extern UnmapPhysicalMemory_t UnmapPhysicalMemory;
+
+BOOL InpOutInitialize(void);
+BOOL InpOutDeinitialize(void);
