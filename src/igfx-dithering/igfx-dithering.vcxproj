@@ -131,11 +131,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="config.h" />
+    <ClInclude Include="igfx_registers.h" />
     <ClInclude Include="InpOut.h" />
     <ClInclude Include="platform.h" />
     <ClInclude Include="WinRing0.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="igfx_registers.c" />
     <ClCompile Include="InpOut.c" />
     <ClCompile Include="WinRing0.c" />
   </ItemGroup>
