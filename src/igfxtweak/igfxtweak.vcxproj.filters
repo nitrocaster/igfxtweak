@@ -11,5 +11,6 @@
     <ClCompile Include="WinRing0.c" />
     <ClCompile Include="InpOut.c" />
     <ClCompile Include="igfx_device.c" />
+    <ClCompile Include="main.c" />
   </ItemGroup>
 </Project>
