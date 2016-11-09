@@ -131,6 +131,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="config.h" />
+    <ClInclude Include="InpOut.h" />
+    <ClInclude Include="WinRing0.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
