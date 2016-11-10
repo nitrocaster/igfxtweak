@@ -5,6 +5,10 @@ FindPciDeviceByClass_t FindPciDeviceByClass = NULL;
 ReadPciConfigDwordEx_t ReadPciConfigDwordEx = NULL;
 ReadPciConfigWordEx_t ReadPciConfigWordEx = NULL;
 
+typedef int(WINAPI *InitializeOls_t)(void);
+typedef int(WINAPI *DeinitializeOls_t)(void);
+static InitializeOls_t InitializeOls;
+static DeinitializeOls_t DeinitializeOls;
 static BOOL initialized = FALSE;
 static HANDLE hWinRing0 = NULL;
 
@@ -16,6 +20,8 @@ static void WinRing0Reset(void)
     FindPciDeviceByClass = NULL;
     ReadPciConfigDwordEx = NULL;
     ReadPciConfigWordEx = NULL;
+    InitializeOls = NULL;
+    DeinitializeOls = NULL;
 }
 
 BOOL WinRing0Initialize(void)
@@ -37,6 +43,12 @@ BOOL WinRing0Initialize(void)
             break;
         if (!(ReadPciConfigWordEx = GetProcAddress(hWinRing0, "ReadPciConfigWordEx")))
             break;
+        if (!(InitializeOls = GetProcAddress(hWinRing0, "InitializeOls")))
+            break;
+        if (!(DeinitializeOls = GetProcAddress(hWinRing0, "DeinitializeOls")))
+            break;
+        if (!InitializeOls())
+            break;
         initialized = 1;
         return TRUE;
     } while (0);
@@ -48,6 +60,7 @@ BOOL WinRing0Deinitialize(void)
 {
     if (!initialized)
         return TRUE;
+    DeinitializeOls();
     WinRing0Reset();
     initialized = 0;
     return TRUE;
