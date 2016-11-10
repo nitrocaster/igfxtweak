@@ -81,7 +81,6 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -106,7 +105,6 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -132,12 +130,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="config.h" />
+    <ClInclude Include="igfx_db.h" />
     <ClInclude Include="igfx_device.h" />
     <ClInclude Include="InpOut.h" />
     <ClInclude Include="platform.h" />
     <ClInclude Include="WinRing0.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="igfx_db.c" />
     <ClCompile Include="igfx_device.c" />
     <ClCompile Include="InpOut.c" />
     <ClCompile Include="main.c" />

@@ -6,11 +6,13 @@
     <ClInclude Include="InpOut.h" />
     <ClInclude Include="platform.h" />
     <ClInclude Include="igfx_device.h" />
+    <ClInclude Include="igfx_db.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinRing0.c" />
     <ClCompile Include="InpOut.c" />
     <ClCompile Include="igfx_device.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="igfx_db.c" />
   </ItemGroup>
 </Project>
