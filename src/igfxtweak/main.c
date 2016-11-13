@@ -73,20 +73,12 @@ int main(int argc, char *argv[])
         if (argc>2)
         {
             // write option values
-            uintptr_t iobase;
-#ifdef PLATFORM_X64
-            if (igfx_device_get_iobase64(addr, bar0, bar1, &iobase))
+            uint32_t iobase_l, iobase_h;
+            if (igfx_device_get_iobase(addr, bar0, bar1, &iobase_l, &iobase_h))
             {
                 puts("failed to get device iobase.");
                 goto error;
             }
-#else
-            if (igfx_device_get_iobase32(addr, bar0, bar1, &iobase))
-            {
-                puts("failed to get device iobase.");
-                goto error;
-            }
-#endif
             char **values = argv+2;
             uint32_t nvalues = argc-2;
             for (uint32_t i = 0; i<nvalues; i++)
@@ -107,8 +99,11 @@ int main(int argc, char *argv[])
                 uint32_t rdata = 0;
                 uint32_t mask = opt_val->reg_mask;
                 uint32_t data = opt_val->reg_data;
-                uintptr_t iobase_mask = (uintptr_t)-1 << 8;
-                uint8_t *phys_addr = (uint8_t *)((iobase&iobase_mask) + opt_val->reg_address);
+#ifdef PLATFORM_X64
+                uint8_t *phys_addr = (uint8_t *)(opt_val->reg_address+((iobase_l | iobase_h<<32)&0xFFFFFFFFFFFFFF00));
+#else
+                uint8_t *phys_addr = (uint8_t *)(opt_val->reg_address+(iobase_l&0xFFFFFF00));
+#endif                
                 if (igfx_device_read(phys_addr, opt_val->reg_size, (uint8_t *)&rdata))
                 {
                     puts("failed to read register.");

@@ -19,21 +19,11 @@ int igfx_device_find(uint32_t *address, uint16_t *ven, uint16_t *dev)
     return 0;
 }
 
-int igfx_device_get_iobase32(uint32_t address, uint32_t bar0, uint32_t bar1, uint32_t* iobase)
+int igfx_device_get_iobase(uint32_t address, uint32_t bar0, uint32_t bar1, uint32_t* iobase_l, uint32_t *iobase_h)
 {
-    uint32_t dummy;
-    if (!ReadPciConfigDwordEx(address, bar0, iobase))
+    if (!ReadPciConfigDwordEx(address, bar0, iobase_l))
         return 1;
-    if (!ReadPciConfigDwordEx(address, bar1, &dummy))
-        return 1;
-    return 0;
-}
-
-int igfx_device_get_iobase64(uint32_t address, uint32_t bar0, uint32_t bar1, uint64_t* iobase)
-{
-    if (!ReadPciConfigDwordEx(address, bar0, (uint32_t *)iobase+1))
-        return 1;
-    if (!ReadPciConfigDwordEx(address, bar1, (uint32_t *)iobase))
+    if (!ReadPciConfigDwordEx(address, bar1, iobase_h))
         return 1;
     return 0;
 }
