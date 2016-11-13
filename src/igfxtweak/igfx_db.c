@@ -3,6 +3,7 @@
 device_entry_t device_db[] =
 {
     //Vendor ID, Device ID, Type, Desc
+    {0x8086, 0x0126, 1, "Intel(R) HD Graphics 3000 (Sandy Bridge)"},
     {0x8086, 0x0152, 1, "Intel(R) HD Graphics (Ivy Bridge)"},
     {0x8086, 0x0156, 1, "Intel(R) HD Graphics (Ivy Bridge)"},
     {0x8086, 0x015a, 1, "Intel(R) HD Graphics (Ivy Bridge)"},
