@@ -21,3 +21,7 @@ Each video output (pipe) has its own dithering configuration and you can configu
 - `igfxtweak dithering st2-a` - enables spatio-temporal dithering (variant 2) on Pipe A
 - `igfxtweak dithering no-a` - disables dithering on Pipe A
 - `igfxtweak dithering sp-a sp-b sp-c sp-d` - enables spatial dithering on Pipe A, Pipe B, Pipe C and Pipe D
+
+## Supported GPUs
+
+See [src/igfxtweak/igfx_db.c](src/igfxtweak/igfx_db.c)
