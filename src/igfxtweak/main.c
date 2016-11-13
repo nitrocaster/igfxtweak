@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
         }
         if (!type)
         {
-            puts("device not supported.");
+            printf("device not supported: VEN%04X, DEV%04X\n", ven_id, dev_id);
             goto error;
         }
         type--;
