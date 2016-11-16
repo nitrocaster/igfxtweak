@@ -5,11 +5,29 @@
 #include "WinRing0.h"
 #include "InpOut.h"
 #include <stdio.h>
+#include <assert.h>
 
 static void print_usage()
 {
     const char *usage_str = "usage: igfxtweak <option> [<values>]";
     puts(usage_str);
+}
+
+static int str_to_bool(char *s, int *result)
+{
+    if (!strcmp(s, "on") || !strcmp(s, "1"))
+    {
+        if (result)
+            *result = 1;
+        return 0;
+    }
+    if (!strcmp(s, "off") || !strcmp(s, "0"))
+    {
+        if (result)
+            *result = 0;
+        return 0;
+    }
+    return 1;
 }
 
 int main(int argc, char *argv[])
@@ -79,44 +97,54 @@ int main(int argc, char *argv[])
                 puts("failed to get device iobase.");
                 goto error;
             }
-            char **values = argv+2;
-            uint32_t nvalues = argc-2;
-            for (uint32_t i = 0; i<nvalues; i++)
+            char *value = argv[2];
+            const option_value_t *opt_val = opt->values;
+            if (opt->value_type==VALUE_BOOL)
             {
-                char *value = values[i];
-                const option_value_t *opt_val = opt->values;
+                static option_value_t opt_bval;
+                opt_bval = *opt_val;
+                int ivalue;
+                if (str_to_bool(value, &ivalue))
+                    opt_bval.desc_s = NULL;
+                else if (!ivalue)
+                    opt_bval.reg_data = ~opt_bval.reg_data;
+                opt_val = &opt_bval;
+            }
+            else if (opt->value_type==VALUE_TOKEN)
+            {
                 while (opt_val->desc_s)
                 {
                     if (!strcmp(opt_val->desc_s, value))
                         break;
                     opt_val++;
                 }
-                if (!opt_val->desc_s)
-                {
-                    printf("no such value: '%s'\n", value);
-                    goto error;
-                }
-                uint32_t rdata = 0;
-                uint32_t mask = opt_val->reg_mask;
-                uint32_t data = opt_val->reg_data;
+            }
+            else
+                assert(!"unknown value type");
+            if (!opt_val->desc_s)
+            {
+                printf("no such value: '%s'\n", value);
+                goto error;
+            }
+            uint32_t rdata = 0;
+            uint32_t mask = opt_val->reg_mask;
+            uint32_t data = opt_val->reg_data;
 #ifdef PLATFORM_X64
-                uint8_t *phys_addr = (uint8_t *)(opt_val->reg_address+((iobase_l | iobase_h<<32)&0xFFFFFFFFFFFFFF00));
+            uint8_t *phys_addr = (uint8_t *)(opt_val->reg_address+
+                ((iobase_l | (uint64_t)iobase_h<<32)&0xFFFFFFFFFFFFFF00));
 #else
-                uint8_t *phys_addr = (uint8_t *)(opt_val->reg_address+(iobase_l&0xFFFFFF00));
+            uint8_t *phys_addr = (uint8_t *)(opt_val->reg_address+(iobase_l&0xFFFFFF00));
 #endif                
-                if (igfx_device_read(phys_addr, opt_val->reg_size, (uint8_t *)&rdata))
-                {
-                    puts("failed to read register.");
-                    goto error;
-                }
-                uint32_t new_data = data & mask | rdata & ~mask;
-                if (new_data==rdata)
-                    continue;
-                if (igfx_device_write(phys_addr, opt_val->reg_size, (uint8_t *)&new_data))
-                {
-                    puts("failed to write register.");
-                    goto error;
-                }
+            if (igfx_device_read(phys_addr, opt_val->reg_size, (uint8_t *)&rdata))
+            {
+                puts("failed to read register.");
+                goto error;
+            }
+            uint32_t new_data = data & mask | rdata & ~mask;
+            if (new_data!=rdata && igfx_device_write(phys_addr, opt_val->reg_size, (uint8_t *)&new_data))
+            {
+                puts("failed to write register.");
+                goto error;
             }
         }
         else

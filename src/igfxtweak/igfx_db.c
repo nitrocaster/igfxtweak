@@ -52,61 +52,61 @@ device_entry_t device_db[] =
     {0, 0, 0, NULL}
 };
 
-static option_value_t opt_type1_dithering[] =
+static option_value_t opt_type1_dithering_a[] =
 {
-    {0x70008, 4, 0x0000001c, 0x00000000, "no-a", "Disable [Pipe A]"},
-    {0x71008, 4, 0x0000001c, 0x00000000, "no-b", "Disable [Pipe B]"},
-    {0x72008, 4, 0x0000001c, 0x00000000, "no-c", "Disable [Pipe C]"},
-    {0x70008, 4, 0x0000001c, 0x00000010, "sp-a", "Spatial [Pipe A]"},
-    {0x71008, 4, 0x0000001c, 0x00000010, "sp-b", "Spatial [Pipe B]"},
-    {0x72008, 4, 0x0000001c, 0x00000010, "sp-c", "Spatial [Pipe C]"},
-    {0x70008, 4, 0x0000001c, 0x00000014, "st1-a", "Spatio-Temporal 1 [Pipe A]"},
-    {0x71008, 4, 0x0000001c, 0x00000014, "st1-b", "Spatio-Temporal 1 [Pipe B]"},
-    {0x72008, 4, 0x0000001c, 0x00000014, "st1-c", "Spatio-Temporal 1 [Pipe C]"},
-    {0x70008, 4, 0x0000001c, 0x00000018, "st2-a", "Spatio-Temporal 2 [Pipe A]"},
-    {0x71008, 4, 0x0000001c, 0x00000018, "st2-b", "Spatio-Temporal 2 [Pipe B]"},
-    {0x72008, 4, 0x0000001c, 0x00000018, "st2-c", "Spatio-Temporal 2 [Pipe C]"},
-    {0x70008, 4, 0x0000001c, 0x0000001c, "tm-a", "Temporal [Pipe A]"},
-    {0x71008, 4, 0x0000001c, 0x0000001c, "tm-b", "Temporal [Pipe B]"},
-    {0x72008, 4, 0x0000001c, 0x0000001c, "tm-c", "Temporal [Pipe C]"},
+    {0x70008, 4, 0x0000001c, 0x00000000, "off", "Disable"},
+    {0x70008, 4, 0x0000001c, 0x00000010, "sp", "Spatial"},
+    {0x70008, 4, 0x0000001c, 0x00000014, "st1", "Spatio-Temporal 1"},
+    {0x70008, 4, 0x0000001c, 0x00000018, "st2", "Spatio-Temporal 2"},
+    {0x70008, 4, 0x0000001c, 0x0000001c, "tm", "Temporal"},
     {0, 0, 0, 0, NULL, NULL}
 };
 
-static option_value_t opt_type2_dithering[] =
+static option_value_t opt_type1_dithering_b[] =
 {
-    {0x70008, 4, 0x0000001c, 0x00000000, "no-a","Disable [Pipe A]"},
-    {0x71008, 4, 0x0000001c, 0x00000000, "no-b","Disable [Pipe B]"},
-    {0x72008, 4, 0x0000001c, 0x00000000, "no-c","Disable [Pipe C]"},
-    {0x7f008, 4, 0x0000001c, 0x00000000, "no-e","Disable [eDP]"},
-    {0x70008, 4, 0x0000001c, 0x00000010, "sp-a","Spatial [Pipe A]"},
-    {0x71008, 4, 0x0000001c, 0x00000010, "sp-b","Spatial [Pipe B]"},
-    {0x72008, 4, 0x0000001c, 0x00000010, "sp-c","Spatial [Pipe C]"},
-    {0x7f008, 4, 0x0000001c, 0x00000010, "sp-e","Spatial [eDP]"},
-    {0x70008, 4, 0x0000001c, 0x00000014, "st1-a","Spatio-Temporal 1 [Pipe A]"},
-    {0x71008, 4, 0x0000001c, 0x00000014, "st1-b","Spatio-Temporal 1 [Pipe B]"},
-    {0x72008, 4, 0x0000001c, 0x00000014, "st1-c","Spatio-Temporal 1 [Pipe C]"},
-    {0x7f008, 4, 0x0000001c, 0x00000014, "st1-e","Spatio-Temporal 1 [eDP]"},
-    {0x70008, 4, 0x0000001c, 0x00000018, "st2-a","Spatio-Temporal 2 [Pipe A]"},
-    {0x71008, 4, 0x0000001c, 0x00000018, "st2-b","Spatio-Temporal 2 [Pipe B]"},
-    {0x72008, 4, 0x0000001c, 0x00000018, "st2-c","Spatio-Temporal 2 [Pipe C]"},
-    {0x7f008, 4, 0x0000001c, 0x00000018, "st2-e","Spatio-Temporal 2 [eDP]"},
-    {0x70008, 4, 0x0000001c, 0x0000001c, "tm-a","Temporal [Pipe A]"},
-    {0x71008, 4, 0x0000001c, 0x0000001c, "tm-b","Temporal [Pipe B]"},
-    {0x72008, 4, 0x0000001c, 0x0000001c, "tm-c","Temporal [Pipe C]"},
-    {0x7f008, 4, 0x0000001c, 0x0000001c, "tm-e","Temporal [eDP]"},
+    {0x71008, 4, 0x0000001c, 0x00000000, "off", "Disable"},
+    {0x71008, 4, 0x0000001c, 0x00000010, "sp", "Spatial"},
+    {0x71008, 4, 0x0000001c, 0x00000014, "st1", "Spatio-Temporal 1"},
+    {0x71008, 4, 0x0000001c, 0x00000018, "st2", "Spatio-Temporal 2"},
+    {0x71008, 4, 0x0000001c, 0x0000001c, "tm", "Temporal"},
+    {0, 0, 0, 0, NULL, NULL}
+};
+
+static option_value_t opt_type1_dithering_c[] =
+{
+    {0x72008, 4, 0x0000001c, 0x00000000, "off", "Disable"},
+    {0x72008, 4, 0x0000001c, 0x00000010, "sp", "Spatial"},
+    {0x72008, 4, 0x0000001c, 0x00000014, "st1", "Spatio-Temporal 1"},
+    {0x72008, 4, 0x0000001c, 0x00000018, "st2", "Spatio-Temporal 2"},
+    {0x72008, 4, 0x0000001c, 0x0000001c, "tm", "Temporal"},
+    {0, 0, 0, 0, NULL, NULL}
+};
+
+static option_value_t opt_type2_dithering_e[] =
+{
+    {0x7f008, 4, 0x0000001c, 0x00000000, "off","Disable"},
+    {0x7f008, 4, 0x0000001c, 0x00000010, "sp","Spatial"},
+    {0x7f008, 4, 0x0000001c, 0x00000014, "st1","Spatio-Temporal 1"},
+    {0x7f008, 4, 0x0000001c, 0x00000018, "st2","Spatio-Temporal 2"},
+    {0x7f008, 4, 0x0000001c, 0x0000001c, "tm","Temporal"},
     {0, 0, 0, 0, NULL, NULL}
 };
 
 static option_entry_t options_type1[] =
 {
-    {"dithering", "Dithering", opt_type1_dithering},
-    {NULL, NULL, NULL}
+    {"dithering_a", "Dithering [Pipe A]", VALUE_TOKEN, opt_type1_dithering_a},
+    {"dithering_b", "Dithering [Pipe B]", VALUE_TOKEN, opt_type1_dithering_b},
+    {"dithering_c", "Dithering [Pipe C]", VALUE_TOKEN, opt_type1_dithering_c},
+    {NULL, NULL, 0, NULL}
 };
 
 static option_entry_t options_type2[] =
 {
-    {"dithering", "Dithering", opt_type2_dithering},
-    {NULL, NULL, NULL}
+    {"dithering_a", "Dithering [Pipe A]", VALUE_TOKEN, opt_type1_dithering_a},
+    {"dithering_b", "Dithering [Pipe B]", VALUE_TOKEN, opt_type1_dithering_b},
+    {"dithering_c", "Dithering [Pipe C]", VALUE_TOKEN, opt_type1_dithering_c},
+    {"dithering_e", "Dithering [eDP]", VALUE_TOKEN, opt_type2_dithering_e},
+    {NULL, NULL, 0, NULL}
 };
 
 option_set_t option_db[] =

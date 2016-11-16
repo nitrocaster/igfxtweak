@@ -2,6 +2,12 @@
 #include "config.h"
 #include <stdint.h>
 
+enum
+{
+    VALUE_BOOL,
+    VALUE_TOKEN,
+};
+
 typedef struct
 {
     uint16_t ven_id;
@@ -24,6 +30,7 @@ typedef struct // option with its values
 {
     const char *desc_s;
     const char *desc_l;
+    int value_type;
     option_value_t *values;
 } option_entry_t;
 
